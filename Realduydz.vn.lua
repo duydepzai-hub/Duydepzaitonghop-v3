@@ -1,35 +1,54 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local CorrectKey = "Top1severscript_freekeynew" 
+
+-- 1. GIAO DIỆN NHẬP KEY
+local KeyWindow = Rayfield:CreateWindow({
+   Name = "Duydepzai Hub — Key System",
+   LoadingTitle = "Đang khởi động hệ thống...",
+   LoadingSubtitle = "by Duydepzai",
+   ConfigurationSaving = { Enabled = false }
+})
+
+local KeyTab = KeyWindow:CreateTab("Hệ Thống Key", 4483362458)
+
+KeyTab:CreateInput({
+   Name = "Nhập Key Tại Đây",
+   PlaceholderText = "Điền key...",
+   RemoveTextAfterFocusLost = false,
    Callback = function(Text)
       if Text == CorrectKey then
-         Rayfield:Notify({Title = "Hệ Thống Key", Content = "Key chính xác!", Duration = 2})
+         Rayfield:Notify({Title = "Thông báo", Content = "Key chính xác!", Duration = 2})
          
-         -- THAY ĐỔI QUAN TRỌNG: Dùng tên biến KeyWindow để xóa, không dùng Rayfield:Destroy()
+         -- XÓA BẢNG KEY, GIỮ LẠI RAYFIELD ĐỂ LOAD TIẾP
          KeyWindow:Destroy() 
          task.wait(0.5)
          
-         -- MỞ UI CHÀO MỪNG
-         local WelcomeWindow = Rayfield:CreateWindow({
-            Name = "Duydepzai Hub — Welcome",
-            LoadingTitle = "Chào mừng đến với DUYDEPZAI HUB",
-            LoadingSubtitle = "Đang khởi động...",
+         -- 2. GỌI UI CHÀO MỪNG
+         local Welcome = Rayfield:CreateWindow({
+            Name = "Duydepzai Hub",
+            LoadingTitle = "Đang đồng bộ...",
+            LoadingSubtitle = "by Duydepzai",
             ConfigurationSaving = { Enabled = false }
          })
          
-         for i = 0, 100, 10 do
-             WelcomeWindow:SetLoadingSubtitle("Đang tải dữ liệu: " .. i .. "%")
-             task.wait(0.2) 
-         end
+         task.wait(2)
+         Welcome:Destroy() -- Xong chào mừng mới xóa UI này
          
-         WelcomeWindow:Destroy()
-         task.wait(0.5)
-         
-         -- MỞ UI CHÍNH
+         -- 3. VÀO MENU CHÍNH
          StartMainScript()
-         
       else
-         Rayfield:Notify({Title = "Key System", Content = "Key sai rồi!", Duration = 3})
+         Rayfield:Notify({Title = "Thông báo", Content = "Sai Key rồi!", Duration = 3})
       end
    end,
+})
 
+KeyTab:CreateButton({
+   Name = "Lấy Key",
+   Callback = function()
+      setclipboard("https://discord.gg/3D3acCm9k")
+      Rayfield:Notify({Title = "Thông báo", Content = "Đã copy link discord!", Duration = 3})
+   end,
+})
 function StartMainScript()
 local Window = Rayfield:CreateWindow({
    Name = "duydepzai Hub",
