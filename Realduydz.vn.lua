@@ -57,22 +57,6 @@ KeyTab:CreateButton({
 })
 
 -- Dòng này ông KHÔNG XÓA, nó sẽ nối tiếp với đoạn code menu chính ở dưới
-         StartMainScript()
-         
-      else
-         Rayfield:Notify({Title = "Key System", Content = "Key sai rồi!", Duration = 3})
-      end
-   end,
-})
-
-KeyTab:CreateButton({
-   Name = "Lấy Key Tại Đây",
-   Callback = function()
-      setclipboard("Top1severscript_freekeynew")
-      Rayfield:Notify({Title = "Hệ Thống Key", Content = "Đã copy link discord!", Duration = 3})
-   end,
-})
-
 function StartMainScript()
 local Window = Rayfield:CreateWindow({
    Name = "duydepzai Hub",
