@@ -29,6 +29,7 @@
          Rayfield:Notify({Title = "Key System", Content = "Key sai rồi!", Duration = 3})
       end
    end,
+
 function StartMainScript()
 local Window = Rayfield:CreateWindow({
    Name = "duydepzai Hub",
