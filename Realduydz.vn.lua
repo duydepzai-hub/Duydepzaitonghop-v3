@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local CorrectKey = "Top1severscript_freekeynew" 
 
--- 1. UI NHẬP KEY
+-- 1. TẠO GIAO DIỆN NHẬP KEY
 local KeyWindow = Rayfield:CreateWindow({
    Name = "Duydepzai Hub — Key System",
    LoadingTitle = "Đang kiểm tra hệ thống...",
@@ -19,11 +19,11 @@ KeyTab:CreateInput({
       if Text == CorrectKey then
          Rayfield:Notify({Title = "Hệ Thống Key", Content = "Key chính xác!", Duration = 2})
          
-         -- Đóng bảng Key
+         -- CHỈ ĐÓNG BẢNG NHẬP KEY, KHÔNG HỦY THƯ VIỆN
          KeyWindow:Destroy() 
          task.wait(0.5)
          
-         -- 2. UI CHÀO MỪNG (Chạy % thanh tiến độ)
+         -- 2. MỞ UI CHÀO MỪNG
          local WelcomeWindow = Rayfield:CreateWindow({
             Name = "Duydepzai Hub — Welcome",
             LoadingTitle = "Chào mừng đến với DUYDEPZAI HUB",
@@ -36,11 +36,27 @@ KeyTab:CreateInput({
              task.wait(0.2) 
          end
          
-         -- Đóng UI chào mừng để nhường chỗ cho UI chính
          WelcomeWindow:Destroy()
          task.wait(0.5)
          
-         -- 3. GỌI MENU CHÍNH
+         -- 3. MỞ UI CHÍNH
+         StartMainScript()
+         
+      else
+         Rayfield:Notify({Title = "Key System", Content = "Key sai rồi!", Duration = 3})
+      end
+   end,
+})
+
+KeyTab:CreateButton({
+   Name = "Lấy Key Tại Đây",
+   Callback = function()
+      setclipboard("https://discord.gg/3D3acCm9k")
+      Rayfield:Notify({Title = "Hệ Thống Key", Content = "Đã copy link discord!", Duration = 3})
+   end,
+})
+
+-- Dòng này ông KHÔNG XÓA, nó sẽ nối tiếp với đoạn code menu chính ở dưới
          StartMainScript()
          
       else
